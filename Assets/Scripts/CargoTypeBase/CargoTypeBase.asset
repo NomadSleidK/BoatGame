@@ -22,6 +22,9 @@ MonoBehaviour:
   - _cargoName: Metal
     _cargoSprite: {fileID: 0}
     _cargoPrefab: {fileID: 0}
+  - _cargoName: Rubber
+    _cargoSprite: {fileID: 0}
+    _cargoPrefab: {fileID: 0}
   _fabrics:
   - {fileID: 0}
   - {fileID: 0}
