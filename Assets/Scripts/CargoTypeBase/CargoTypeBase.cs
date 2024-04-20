@@ -35,6 +35,22 @@ public class CargoTypeBase : ScriptableObject
         return cargoList;
     }
 
+    public Sprite GetCargoSprite(string name)
+    {
+        Sprite cargoSprite = null;
+
+        foreach (CargoType cargo in _cargoTypes)
+        {
+            if (cargo.CargoName == name)
+            {
+                cargoSprite = cargo.CargoSprite;
+                break;
+            }
+        }
+
+        return cargoSprite;
+    }
+
     private bool CheckNameCorrected()
     {
         foreach (CargoType cargoA in _cargoTypes)

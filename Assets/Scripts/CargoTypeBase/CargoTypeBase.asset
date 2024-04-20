@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cargoTypes:
   - _cargoName: Wood
-    _cargoSprite: {fileID: 0}
+    _cargoSprite: {fileID: 21300000, guid: 90ff076d53825f84f92ae314884ef1f4, type: 3}
     _cargoPrefab: {fileID: 0}
   - _cargoName: Stone
-    _cargoSprite: {fileID: 0}
+    _cargoSprite: {fileID: 21300000, guid: 50701ca51c8fd9d4bb62c27ed07eaa13, type: 3}
     _cargoPrefab: {fileID: 0}
   - _cargoName: Metal
-    _cargoSprite: {fileID: 0}
+    _cargoSprite: {fileID: 21300000, guid: ea06ae83558cb5f4181f1862cbd5a385, type: 3}
     _cargoPrefab: {fileID: 0}
   - _cargoName: Rubber
-    _cargoSprite: {fileID: 0}
+    _cargoSprite: {fileID: 21300000, guid: 7692db348c9eb0440be3a970e3098c06, type: 3}
     _cargoPrefab: {fileID: 0}
   _fabrics:
   - {fileID: 0}

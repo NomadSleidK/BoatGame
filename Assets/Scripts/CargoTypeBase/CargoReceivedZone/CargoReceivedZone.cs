@@ -8,7 +8,6 @@ public class CargoReceivedZone : MonoBehaviour
     public class ReceivedCargoList
     {
         public string CargoName;
-
         public bool IsCargoActive;
 
         public ReceivedCargoList(string cargoName, bool isCargoActive)
@@ -19,8 +18,7 @@ public class CargoReceivedZone : MonoBehaviour
     }
 
     [SerializeField] private CargoTypeBase _cargoType;
-
-    public List<ReceivedCargoList> _cargoList = new List<ReceivedCargoList>();
+    public List<ReceivedCargoList> _cargoList;
 
     public void ResetCargoList(List<ReceivedCargoList> newCargoList)
     {
@@ -37,7 +35,20 @@ public class CargoReceivedZone : MonoBehaviour
                 }
             }
         }
-
         _cargoList = newCargoList;
+    }
+
+    public List<string> GetActiveCargo()
+    {
+        List<string> cargoList = new List<string>();
+
+        foreach (ReceivedCargoList cargo in _cargoList)
+        {
+            if (cargo.IsCargoActive == true)
+            {
+                cargoList.Add(cargo.CargoName);
+            }
+        }
+        return cargoList;
     }
 }
