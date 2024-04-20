@@ -8,16 +8,25 @@ public class Boat : MonoBehaviour
 {
     private Camera _camera;
     private NavMeshAgent _agent;
-    void Start()
+
+    [System.Serializable]
+    public class CargoPoint
     {
-        _agent = GetComponent<NavMeshAgent>();
-        _camera = Camera.main;
+        [SerializeField] private Transform _cargoPoint;
+        public Transform GetCargoPoint => _cargoPoint;
+
+        public bool IsFullPoint;
+
+        public GameObject Cargo;
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private List<CargoPoint> _cargoPoints;
+    public List<CargoPoint> GetCargoPoints => _cargoPoints;
+
+    private void Start()
     {
-        
+        _camera = Camera.main;
+        _agent = GetComponent<NavMeshAgent>();
     }
 
     private void OnGUI()

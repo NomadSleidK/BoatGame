@@ -19,8 +19,9 @@ public class CargoTypeBase : ScriptableObject
         public GameObject CargoPrefab => _cargoPrefab;
     }
 
-    [SerializeField] private List<CargoType> _cargoTypes;
 
+
+    [SerializeField] private List<CargoType> _cargoTypes;
     [SerializeField] private CargoReceivedZone[] _fabrics;
 
     public List<ReceivedCargoList> GetCargoList()
@@ -50,6 +51,24 @@ public class CargoTypeBase : ScriptableObject
 
         return cargoSprite;
     }
+
+    public GameObject GetCargoPrefab(string name)
+    {
+        GameObject cargoPrefab = null;
+
+        foreach (CargoType cargo in _cargoTypes)
+        {
+            if (cargo.CargoName == name)
+            {
+                cargoPrefab = cargo.CargoPrefab;
+                break;
+            }
+        }
+
+        return cargoPrefab;
+    }
+
+
 
     private bool CheckNameCorrected()
     {

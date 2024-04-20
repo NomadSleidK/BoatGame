@@ -8,16 +8,18 @@ public class CargoButton : MonoBehaviour
 {
     [SerializeField] private Text _buttonText;
     private Image _image;
+    private LoaderCargo _loaderCargo;
 
     private void Awake()
     {
         _image = GetComponent<Image>();
     }
 
-    public void SetCargoButtonDesign(string text, Sprite sprite)
+    public void SetCargoButtonSettings(string text, Sprite sprite, LoaderCargo loaderCargo)
     {
         CargoButtonSetText(text);
         CargoButtonSetSprite(sprite);
+        _loaderCargo = loaderCargo;
     }
 
     private void CargoButtonSetText(string text)
@@ -30,8 +32,8 @@ public class CargoButton : MonoBehaviour
         _image.sprite = sprite;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Click()
     {
-        Debug.Log("Click");
+        _loaderCargo(_buttonText.text);
     }
 }
