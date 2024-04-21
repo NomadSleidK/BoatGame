@@ -29,6 +29,3 @@ MonoBehaviour:
     _cargoSprite: {fileID: 21300000, guid: 7692db348c9eb0440be3a970e3098c06, type: 3}
     _cargoPrefab: {fileID: 8083435440480068913, guid: fbfd92ee240785d469c85e9acb55dc27,
       type: 3}
-  _fabrics:
-  - {fileID: 0}
-  - {fileID: 0}

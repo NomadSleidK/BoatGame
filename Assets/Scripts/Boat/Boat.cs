@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Boat : MonoBehaviour
 {
@@ -10,18 +12,19 @@ public class Boat : MonoBehaviour
     private NavMeshAgent _agent;
 
     [System.Serializable]
-    public class CargoPoint
+    public class CargoSpace
     {
         [SerializeField] private Transform _cargoPoint;
         public Transform GetCargoPoint => _cargoPoint;
 
         public bool IsFullPoint;
 
+        public string CargoName;
         public GameObject Cargo;
     }
 
-    [SerializeField] private List<CargoPoint> _cargoPoints;
-    public List<CargoPoint> GetCargoPoints => _cargoPoints;
+    [SerializeField] private List<CargoSpace> _cargoPoints;
+    public List<CargoSpace> GetCargoPoints => _cargoPoints;
 
     private void Start()
     {
@@ -37,6 +40,9 @@ public class Boat : MonoBehaviour
 
             if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out hit))
             {
+                if (EventSystem.current.IsPointerOverGameObject())
+                    return;
+
                 _agent.SetDestination(hit.point);
             }
         }

@@ -11,9 +11,9 @@ public class CargoReceivedUIMenu : MonoBehaviour
     [SerializeField] private CargoTypeBase _cargoTypeBase;
     [SerializeField] private GameObject _buttonPrefab;
     [SerializeField] private Transform _buttonsGroup;
-    [SerializeField] private CargoLoader _cargoLoader;
-
-    [SerializeField] private List<string> _cargoNames;
+    
+    private CargoLoader _cargoLoader;
+    private List<string> _cargoNames;
     private GameObject[] _buttons;
     private Canvas _canvas;
 

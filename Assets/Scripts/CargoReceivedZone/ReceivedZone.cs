@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerZone : MonoBehaviour
+public class ReceivedZone : MonoBehaviour
 {
-    private CargoReceivedZone _cargoReceivedZone;
+    private CargoReceivedData _cargoReceivedData;
     private CargoReceivedUIMenu _cargoReceivedUIMenu;
 
     private void Start()
     {
-        _cargoReceivedZone = GetComponent<CargoReceivedZone>();
+        _cargoReceivedData = GetComponent<CargoReceivedData>();
         _cargoReceivedUIMenu = GameObject.FindGameObjectWithTag("CargoMenuUI").GetComponent<CargoReceivedUIMenu>();
     }
 
@@ -18,7 +16,7 @@ public class TriggerZone : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _cargoReceivedUIMenu.SetVisibleState(true);
-            _cargoReceivedUIMenu.SetActiveCargoNames(_cargoReceivedZone.GetActiveCargo());
+            _cargoReceivedUIMenu.SetActiveCargoNames(_cargoReceivedData.GetActiveCargo());
         }
     }
 

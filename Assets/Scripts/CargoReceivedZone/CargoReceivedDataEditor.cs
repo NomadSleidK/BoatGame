@@ -1,33 +1,33 @@
 using UnityEditor;
-using static CargoReceivedZone;
+using static CargoReceivedData;
 
-[CustomEditor(typeof(CargoReceivedZone))]
+[CustomEditor(typeof(CargoReceivedData))]
 [CanEditMultipleObjects]
-public class CargoReceivedZoneEditor : Editor
+public class CargoReceivedDataEditor : Editor
 {
-    private SerializedProperty property;
+    private SerializedProperty _cargoList;
     private bool[] _cargoArray;
 
 
     private void OnEnable()
     {
-        property = serializedObject.FindProperty(nameof(CargoReceivedZone._cargoList));
-        _cargoArray = new bool[property.arraySize];      
+        _cargoList = serializedObject.FindProperty(nameof(CargoReceivedData._cargoList));
+        _cargoArray = new bool[_cargoList.arraySize];      
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
         
-        for (int i = 0; i < property.arraySize; i++)
+        for (int i = 0; i < _cargoList.arraySize; i++)
         {
-            SerializedProperty ooc = property.GetArrayElementAtIndex(i);
+            SerializedProperty ooc = _cargoList.GetArrayElementAtIndex(i);
             _cargoArray[i] = ooc.FindPropertyRelative(nameof(ReceivedCargoList.IsCargoActive)).boolValue;
         }
 
-        for (int i = 0; i < property.arraySize; i++)
+        for (int i = 0; i < _cargoList.arraySize; i++)
         {
-            SerializedProperty ooc = property.GetArrayElementAtIndex(i);
+            SerializedProperty ooc = _cargoList.GetArrayElementAtIndex(i);
 
             EditorGUILayout.BeginHorizontal();
 
@@ -37,9 +37,9 @@ public class CargoReceivedZoneEditor : Editor
             EditorGUILayout.EndHorizontal();
         }
 
-        for (int i = 0; i < property.arraySize; i++)
+        for (int i = 0; i < _cargoList.arraySize; i++)
         {
-            SerializedProperty ooc = property.GetArrayElementAtIndex(i);
+            SerializedProperty ooc = _cargoList.GetArrayElementAtIndex(i);
             ooc.FindPropertyRelative(nameof(ReceivedCargoList.IsCargoActive)).boolValue = _cargoArray[i];
         }
 

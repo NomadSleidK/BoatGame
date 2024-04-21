@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static CargoReceivedZone;
+using static CargoReceivedData;
+using static CargoUnloadingData;
 
 [CreateAssetMenu(fileName = "CargoTypeBase", menuName = "ScriptableObjects/CargoTypeBase", order = 51)]
 public class CargoTypeBase : ScriptableObject
@@ -22,15 +23,29 @@ public class CargoTypeBase : ScriptableObject
 
 
     [SerializeField] private List<CargoType> _cargoTypes;
-    [SerializeField] private CargoReceivedZone[] _fabrics;
+    private CargoReceivedData[] ReceivedZones;
+    private CargoUnloadingData[] UnloadingZones;
 
-    public List<ReceivedCargoList> GetCargoList()
+
+    public List<ReceivedCargoList> GetReceivedCargoList()
     {
         List <ReceivedCargoList> cargoList = new List<ReceivedCargoList>();
 
         foreach (CargoType cargo in _cargoTypes)
         {
             cargoList.Add(new(cargo.CargoName, false));
+        }
+
+        return cargoList;
+    }
+
+    public List<UnloadingCargoList> GetUnloadingCargoList()
+    {
+        List<UnloadingCargoList> cargoList = new List<UnloadingCargoList>();
+
+        foreach (CargoType cargo in _cargoTypes)
+        {
+            cargoList.Add(new(cargo.CargoName, false, 0));
         }
 
         return cargoList;
@@ -88,14 +103,20 @@ public class CargoTypeBase : ScriptableObject
 
     private void OnValidate()
     {
-        _fabrics = FindObjectsOfType<CargoReceivedZone>();
+        ReceivedZones = FindObjectsOfType<CargoReceivedData>();
+        UnloadingZones = FindObjectsOfType<CargoUnloadingData>();
 
         if (CheckNameCorrected() == true)
             return;
 
-        foreach (CargoReceivedZone receivedZone in _fabrics)
+        foreach (CargoReceivedData receivedZone in ReceivedZones)
         {
-            receivedZone.ResetCargoList(GetCargoList());
+            receivedZone.ResetCargoList(GetReceivedCargoList());
+        }
+
+        foreach (CargoUnloadingData unloadingZone in UnloadingZones)
+        {
+            unloadingZone.ResetCargoList(GetUnloadingCargoList());
         }
     }
 }

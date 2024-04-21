@@ -2,7 +2,7 @@ using Unity.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CargoReceivedZone : MonoBehaviour
+public class CargoReceivedData : MonoBehaviour
 {
     [System.Serializable]
     public class ReceivedCargoList
